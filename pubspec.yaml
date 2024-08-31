@@ -21,15 +21,15 @@ version: 1.0.0+1
 environment:
   sdk: ^3.5.0
 
-# Dependencies specify other packages that your package needs in order to work.
-# To automatically upgrade your package dependencies to the latest versions
-# consider running `flutter pub upgrade --major-versions`. Alternatively,
-# dependencies can be manually updated by changing the version numbers below to
-# the latest version available on pub.dev. To see which dependencies have newer
-# versions available, run `flutter pub outdated`.
+
 dependencies:
   flutter:
     sdk: flutter
+  # 图片缓存 https://github.com/renefloor/flutter_cached_network_image
+  cached_network_image: ^3.4.0
+  # Dart 常用工具类库 https://github.com/Sky24n/common_utils
+  common_utils: 2.1.0
+  sp_util: 2.0.3
 
 
   # The following adds the Cupertino Icons font to your application.

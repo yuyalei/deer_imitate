@@ -1,11 +1,23 @@
+import 'package:deer_imitate/res/constant.dart';
+import 'package:deer_imitate/utils/log_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:sp_util/sp_util.dart';
 
-void main() {
+Future<void> main() async {
+  if(Constant.inProduction){
+    /// Release环境时不打印debugPrint内容
+    debugPrint = (String? message, {int? wrapWidth}) {};
+  }
+  await SpUtil.getInstance();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final Widget? home;
+  final ThemeData? theme;
+  MyApp({super.key,this.home, this.theme}){
+    Log.init();
+  }
 
   // This widget is the root of your application.
   @override
