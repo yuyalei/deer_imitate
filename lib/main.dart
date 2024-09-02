@@ -1,6 +1,8 @@
 import 'package:deer_imitate/home/splash_page.dart';
 import 'package:deer_imitate/res/constant.dart';
+import 'package:deer_imitate/utils/device_utils.dart';
 import 'package:deer_imitate/utils/dio_utils.dart';
+import 'package:deer_imitate/utils/handle_error_utils.dart';
 import 'package:deer_imitate/utils/log_utils.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +15,17 @@ Future<void> main() async {
     /// Release环境时不打印debugPrint内容
     debugPrint = (String? message, {int? wrapWidth}) {};
   }
-  // await SpUtil.getInstance();
-  runApp(MyApp());
+  handleError(() async {
+    /// 确保初始化完成
+    WidgetsFlutterBinding.ensureInitialized();
+
+    /// sp初始化
+    await SpUtil.getInstance();
+
+    /// 1.22 预览功能: 在输入频率与显示刷新率不匹配情况下提供平滑的滚动效果
+    // GestureBinding.instance?.resamplingEnabled = true;
+    runApp(MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
