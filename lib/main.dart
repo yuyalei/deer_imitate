@@ -1,7 +1,11 @@
 import 'package:deer_imitate/res/constant.dart';
+import 'package:deer_imitate/utils/dio_utils.dart';
 import 'package:deer_imitate/utils/log_utils.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:sp_util/sp_util.dart';
+
+import 'net/intercept.dart';
 
 Future<void> main() async {
   if(Constant.inProduction){
@@ -9,7 +13,7 @@ Future<void> main() async {
     debugPrint = (String? message, {int? wrapWidth}) {};
   }
   await SpUtil.getInstance();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -19,27 +23,34 @@ class MyApp extends StatelessWidget {
     Log.init();
   }
 
+  void initDio() {
+    final List<Interceptor> interceptors = <Interceptor>[];
+
+    /// 统一添加身份验证请求头
+    interceptors.add(AuthInterceptor());
+
+    /// 刷新Token
+    interceptors.add(TokenInterceptor());
+
+    /// 打印Log(生产模式去除)
+    if (!Constant.inProduction) {
+      interceptors.add(LoggingInterceptor());
+    }
+
+    /// 适配数据(根据自己的数据结构，可自行选择添加)
+    interceptors.add(AdapterInterceptor());
+    configDio(
+      baseUrl: 'https://api.github.com/',
+      interceptors: interceptors,
+    );
+  }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
