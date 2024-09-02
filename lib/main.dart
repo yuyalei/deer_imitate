@@ -13,7 +13,7 @@ Future<void> main() async {
     /// Release环境时不打印debugPrint内容
     debugPrint = (String? message, {int? wrapWidth}) {};
   }
-  await SpUtil.getInstance();
+  // await SpUtil.getInstance();
   runApp(MyApp());
 }
 
@@ -57,9 +57,9 @@ class MyApp extends StatelessWidget {
 Widget _buildMaterialApp(){
   return MaterialApp(
     title: "Flutter inmitate",
-    debugShowCheckedModeBanner: false,
-    showSemanticsDebugger: true,
-    checkerboardOffscreenLayers: true, // 检查离屏渲染
+    // debugShowCheckedModeBanner: false,
+    // showSemanticsDebugger: true,
+    // checkerboardOffscreenLayers: true, // 检查离屏渲染
     theme: ThemeData(
       colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       useMaterial3: true,

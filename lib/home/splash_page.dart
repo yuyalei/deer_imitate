@@ -44,6 +44,7 @@ class _SplashPageState extends State<SplashPage>{
   }
   @override
   Widget build(BuildContext context) {
+    print("build status: "+_status.toString());
     return Material(
       color: context.backgroundColor,
       child: _status == 0 ?
@@ -76,11 +77,13 @@ class _SplashPageState extends State<SplashPage>{
 
   void _initGuide(){
     setState(() {
+      print("_status = 1");
       _status = 1;
     });
   }
 
   void _initSplash() {
+    print("_initSplash");
     _subscription = Stream.value(1).delay(const Duration(milliseconds: 1500)).listen((_) {
       if (SpUtil.getBool(Constant.keyGuide, defValue: true)! || Constant.isDriverTest) {
         SpUtil.putBool(Constant.keyGuide, false);
