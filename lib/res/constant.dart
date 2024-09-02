@@ -5,7 +5,7 @@ class Constant {
   /// App运行在Release环境时，inProduction为true；当App运行在Debug和Profile环境时，inProduction为false
   static const bool inProduction  = kReleaseMode;
 
-  static bool isDriverTest  = false;
+  static bool isDriverTest  = true;
   static bool isUnitTest  = false;
   
   static const String data = 'data';
