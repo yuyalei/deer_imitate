@@ -7,6 +7,7 @@ import 'package:deer_imitate/utils/handle_error_utils.dart';
 import 'package:deer_imitate/utils/log_utils.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:sp_util/sp_util.dart';
 
 import 'net/intercept.dart';
@@ -63,7 +64,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return _buildMaterialApp();
+    return OKToast(
+      backgroundColor: Colors.black54,
+      textPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+      radius: 20.0,
+      position: ToastPosition.bottom,
+      child: _buildMaterialApp(),
+    );
   }
 }
 
