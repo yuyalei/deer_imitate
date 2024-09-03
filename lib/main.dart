@@ -1,5 +1,6 @@
 import 'package:deer_imitate/home/splash_page.dart';
 import 'package:deer_imitate/res/constant.dart';
+import 'package:deer_imitate/routers/routers.dart';
 import 'package:deer_imitate/utils/device_utils.dart';
 import 'package:deer_imitate/utils/dio_utils.dart';
 import 'package:deer_imitate/utils/handle_error_utils.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
   MyApp({super.key,this.home, this.theme}){
     Log.init();
     initDio();
+    Routes.initRoutes();
   }
 
   void initDio() {

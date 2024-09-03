@@ -1,6 +1,7 @@
 
 import 'dart:async';
 
+import 'package:deer_imitate/login/login_router.dart';
 import 'package:deer_imitate/res/constant.dart';
 import 'package:deer_imitate/utils/device_utils.dart';
 import 'package:deer_imitate/utils/image_utils.dart';
@@ -11,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety_flutter3/flutter_swiper_null_safety_flutter3.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sp_util/sp_util.dart';
+
+import '../routers/fluro_navigator.dart';
 
 class SplashPage extends StatefulWidget{
   const SplashPage({super.key});
@@ -65,7 +68,14 @@ class _SplashPageState extends State<SplashPage>{
             );
           },
           loop: false,
-          itemCount: _guideList.length)
+          itemCount: _guideList.length,
+        onTap: (indext){
+            if(indext == _guideList.length - 1){
+              _goLogin();
+            }
+        },
+
+      ),
     );
   }
 
@@ -89,9 +99,12 @@ class _SplashPageState extends State<SplashPage>{
         SpUtil.putBool(Constant.keyGuide, false);
         _initGuide();
       } else {
-
+        _goLogin();
       }
     });
   }
 
+  void _goLogin() {
+    NavigatorUtils.push(context, LoginRouter.loginPage, replace: true);
+  }
 }
