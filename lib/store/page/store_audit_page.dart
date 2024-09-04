@@ -30,7 +30,7 @@ class _StoreAuditPageState extends State<StoreAuditPage> {
         centerTitle: "店铺审核资料",
       ),
       body: MyScrollView(
-          padding: const EdgeInsets.symmetric(vertical: 22.0),
+          padding: const EdgeInsets.symmetric(vertical: 16.0,horizontal: 15),
           bottomButton: Padding(
             padding: const EdgeInsets.only(
                 left: 16.0, right: 16.0, bottom: 8.0),
@@ -118,7 +118,7 @@ class _StoreAuditPageState extends State<StoreAuditPage> {
   ];
 
   void _showBottomSheet() {
-    showBottomSheet(
+    showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
         return DraggableScrollableSheet(
