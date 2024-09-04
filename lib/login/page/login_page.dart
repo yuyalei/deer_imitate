@@ -1,12 +1,14 @@
 import 'package:deer_imitate/login/widgets/my_test_field.dart';
 import 'package:deer_imitate/res/constant.dart';
 import 'package:deer_imitate/res/resources.dart';
+import 'package:deer_imitate/routers/fluro_navigator.dart';
 import 'package:deer_imitate/utils/ChangeNotifierMixin.dart';
 import 'package:deer_imitate/widgets/my_app_bar.dart';
 import 'package:deer_imitate/widgets/my_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:sp_util/sp_util.dart';
 
+import '../../store/store_router.dart';
 import '../../widgets/my_button.dart';
 
 class LoginPage extends StatefulWidget{
@@ -133,6 +135,7 @@ class _LoginPageState extends State<LoginPage> with ChangeNotifierMixin<LoginPag
   void _login(){
     _showSnackBar(context, "登陆成功");
     SpUtil.putString(Constant.phone, _nameController.text);
+    NavigatorUtils.push(context, StoreRouter.auditPage);
   }
 
   void _showSnackBar(BuildContext context,String text) {

@@ -1,4 +1,5 @@
 import 'package:deer_imitate/login/login_router.dart';
+import 'package:deer_imitate/store/store_router.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,7 @@ class Routes{
 
     _listRouter.clear();
     _listRouter.add(LoginRouter());
+    _listRouter.add(StoreRouter());
 
     void initRouter(IRouterProvider routerProvider){
       routerProvider.initRouter(router);
