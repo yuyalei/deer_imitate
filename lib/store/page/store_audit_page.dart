@@ -1,5 +1,6 @@
 import 'package:deer_imitate/res/resources.dart';
 import 'package:deer_imitate/routers/fluro_navigator.dart';
+import 'package:deer_imitate/store/store_router.dart';
 import 'package:deer_imitate/widgets/my_app_bar.dart';
 import 'package:deer_imitate/widgets/my_button.dart';
 import 'package:deer_imitate/widgets/my_scroll_view.dart';
@@ -36,7 +37,7 @@ class _StoreAuditPageState extends State<StoreAuditPage> {
                 left: 16.0, right: 16.0, bottom: 8.0),
             child: MyButton(
               onPressed: () {
-
+                NavigatorUtils.push(context, StoreRouter.auditResultPage);
               },
               text: "提交",
             ),
