@@ -1,8 +1,10 @@
+import 'package:deer_imitate/routers/fluro_navigator.dart';
 import 'package:deer_imitate/widgets/my_app_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../../res/gaps.dart';
 import '../../res/styles.dart';
+import '../../routers/routers.dart';
 import '../../widgets/load_image.dart';
 import '../../widgets/my_button.dart';
 
@@ -50,7 +52,7 @@ class _StoreAuditResultPageState extends State<StoreAuditResultPage>{
             Gaps.vGap24,
             MyButton(
               onPressed: () {
-
+                NavigatorUtils.push(context, Routes.home, clearStack: true);
               },
               text: '进入',
             )

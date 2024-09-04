@@ -1,6 +1,7 @@
 import 'package:deer_imitate/home/splash_page.dart';
 import 'package:deer_imitate/res/constant.dart';
 import 'package:deer_imitate/routers/routers.dart';
+import 'package:deer_imitate/store/page/store_audit_result_page.dart';
 import 'package:deer_imitate/utils/device_utils.dart';
 import 'package:deer_imitate/utils/dio_utils.dart';
 import 'package:deer_imitate/utils/handle_error_utils.dart';
@@ -84,6 +85,7 @@ Widget _buildMaterialApp(){
       colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       useMaterial3: true,
     ),
-    home: const SplashPage(),
+    //todo
+    home: const StoreAuditResultPage(),
   );
 }
