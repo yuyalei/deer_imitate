@@ -19,7 +19,7 @@ class GoodsPage extends StatefulWidget {
   }
 }
 
-class _GoodsPageState extends State<GoodsPage> {
+class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMixin{
   GoodsPageProvider provider = GoodsPageProvider();
   final List<String> _sortList = [
     '全部商品',
@@ -32,8 +32,22 @@ class _GoodsPageState extends State<GoodsPage> {
     '酒水',
     '家庭清洁'
   ];
+  TabController? _tabController ;
   final GlobalKey _bodyKey = GlobalKey();
   final GlobalKey _buttonKey = GlobalKey();
+
+  @override
+  void initState() {
+    _tabController = TabController(length: 3, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _tabController?.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final Color? iconColor = ThemeUtils.getIconColor(context);
@@ -95,6 +109,27 @@ class _GoodsPageState extends State<GoodsPage> {
               _showSortMenu();
             } ,
             ),
+            Gaps.vGap24,
+            Container(
+              padding: EdgeInsets.only(left: 16.0),
+              color: context.backgroundColor,
+              child: TabBar(
+                isScrollable: true,
+                  controller: _tabController,
+                  labelStyle: TextStyles.textBold18,
+                  labelPadding: EdgeInsets.zero,
+                  indicatorSize: TabBarIndicatorSize.label,
+                  unselectedLabelColor: Colours.text,
+                  labelColor: Theme.of(context).primaryColor,
+                  indicatorPadding: EdgeInsets.only(right: 98-36),
+                  indicatorWeight: 2.0,
+                  tabs: [
+                    _TabView('在售', 0),
+                    _TabView('待售', 1),
+                    _TabView('下架', 2),
+                  ]
+              ),
+            )
           ],
         ),
       ),
@@ -116,6 +151,40 @@ class _GoodsPageState extends State<GoodsPage> {
           provider.setSortIndex(index);
           Toast.show('选择分类: $name');
         },
+      ),
+    );
+  }
+}
+
+class _TabView extends StatelessWidget{
+  final String tabName;
+  final int index;
+
+  _TabView(this.tabName, this.index);
+
+  @override
+  Widget build(BuildContext context) {
+    return Tab(
+      child: SizedBox(
+        width: 98.0,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(tabName),
+            Consumer<GoodsPageProvider>(
+                builder: (_,provider,child){
+                  return Visibility(
+                    visible: provider.goodsCountList[index] > 0 && provider.index == index,
+                      child: Padding(
+                          padding: const EdgeInsets.only(top: 1.0),
+                        child: Text('(${provider.goodsCountList[index]}件)',
+                        style: TextStyle(fontSize: Dimens.font_sp12),),
+                      )
+                  );
+                }
+            )
+          ],
+        ),
       ),
     );
   }
