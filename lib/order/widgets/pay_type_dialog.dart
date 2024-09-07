@@ -13,8 +13,7 @@ class PayTypeDialog extends StatefulWidget{
 
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
+    return _PayTypeDialog();
   }
 }
 
