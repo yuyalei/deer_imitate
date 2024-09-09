@@ -1,3 +1,4 @@
+import 'package:deer_imitate/goods/page/goods_list_page.dart';
 import 'package:deer_imitate/goods/provider/goods_page_provider.dart';
 import 'package:deer_imitate/res/gaps.dart';
 import 'package:deer_imitate/res/resources.dart';
@@ -33,6 +34,7 @@ class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMix
     '家庭清洁'
   ];
   TabController? _tabController ;
+  final PageController _pageController = PageController();
   final GlobalKey _bodyKey = GlobalKey();
   final GlobalKey _buttonKey = GlobalKey();
 
@@ -127,13 +129,31 @@ class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMix
                     _TabView('在售', 0),
                     _TabView('待售', 1),
                     _TabView('下架', 2),
-                  ]
+                  ],
+                onTap:(index){
+                  if(!mounted)
+                    return;
+                  _pageController.jumpToPage(index);
+                }
               ),
+            ),
+            Gaps.line,
+            Expanded(
+                child: PageView.builder(
+                  itemCount: 3,
+                    onPageChanged: _onPageChange,
+                    controller: _pageController,
+                    itemBuilder: (_,int index) => GoodsListPage(index: index)
+                )
             )
           ],
         ),
       ),
     );
+  }
+  void _onPageChange(int index){
+    _tabController?.animateTo(index);
+    provider.setIndex(index);
   }
 
   void _showSortMenu(){

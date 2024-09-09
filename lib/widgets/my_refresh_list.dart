@@ -18,16 +18,18 @@ class DeerListView extends StatefulWidget{
   final double? itemExtent;
 
 
-  DeerListView(
-      this.onRefresh,
-      this.loadMore,
-      this.itemCount,
-      this.hasMore,
-      this.itemBuilder,
-      this.stateType,
-      this.pageSize,
-      this.padding,
-      this.itemExtent);
+  const DeerListView({
+    super.key,
+    required this.itemCount,
+    required this.itemBuilder,
+    required this.onRefresh,
+    this.loadMore,
+    this.hasMore = false,
+    this.stateType = StateType.empty,
+    this.pageSize = 10,
+    this.padding,
+    this.itemExtent,
+  });
 
   @override
   State<StatefulWidget> createState() {
@@ -70,7 +72,7 @@ class _DeerListViewState extends State<DeerListView>{
           return true;
         },
           child: child),
-    )
+    );
   }
 
   Future<void> _loadMore() async {
@@ -109,6 +111,6 @@ class MoreWidget extends StatelessWidget{
           Text(hasMore ? '正在加载中...' : (itemCount < pageSize ? '' : '没有了呦~'), style: style),
         ],
       ),
-    )
+    );
   }
 }
