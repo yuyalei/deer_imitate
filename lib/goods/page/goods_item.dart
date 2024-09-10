@@ -107,7 +107,7 @@ class GoodsItem extends StatelessWidget {
       children: [
         Hero(
             tag: heroTag, 
-            child: LoadAssetImage(item.icon, width: 72.0, height: 72.0)
+            child: LoadImage(item.icon, width: 72.0, height: 72.0)
         ),
         Gaps.hGap8,
         Expanded(

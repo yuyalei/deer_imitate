@@ -75,6 +75,7 @@ class LoadAssetImage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+
     return Image.asset(
       ImageUtils.getImgPath(image,format: format),
       height: height,

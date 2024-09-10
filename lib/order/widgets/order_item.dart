@@ -10,6 +10,7 @@ import '../../res/styles.dart';
 import '../../routers/fluro_navigator.dart';
 import '../../utils/toast_utils.dart';
 import '../../widgets/my_card.dart';
+import '../order_router.dart';
 
 const List<String> orderLeftButtonText = ['拒单', '拒单', '订单跟踪', '订单跟踪', '订单跟踪'];
 const List<String> orderRightButtonText = ['接单', '开始配送', '完成', '', ''];
@@ -33,7 +34,7 @@ class OrderItem extends StatelessWidget{
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: InkWell(
-              //onTap: () => NavigatorUtils.push(context, OrderRouter.orderInfoPage),
+              onTap: () => NavigatorUtils.push(context, OrderRouter.orderInfoPage),
               child: _buildContent(context),
             ),
           ),
