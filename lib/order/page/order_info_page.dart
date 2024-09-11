@@ -1,4 +1,5 @@
 import 'package:deer_imitate/goods/page/goods_page.dart';
+import 'package:deer_imitate/order/order_router.dart';
 import 'package:deer_imitate/res/colors.dart';
 import 'package:deer_imitate/res/dimens.dart';
 import 'package:deer_imitate/res/gaps.dart';
@@ -146,7 +147,7 @@ class _OrderInfoPageState extends State<OrderInfoPage>{
       appBar: MyAppBar(
         actionName: '订单跟踪',
         onPressed: () {
-          
+          NavigatorUtils.push(context, OrderRouter.orderTrackPage);
         },
       ),
       body: MyScrollView(
