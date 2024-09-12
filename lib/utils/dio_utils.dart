@@ -113,6 +113,31 @@ class DioUtils {
     });
   }
 
+  /// 统一处理(onSuccess返回T对象，onSuccessList返回 List<T>)
+  void asyncRequestNetwork<T>(Method method,String url,{
+    NetSuccessCallback<T?>? onSuccess,
+    NetErrorCallback? onError,
+    Object? params,
+    Map<String,dynamic>? queryParameters,
+    CancelToken? cancelToken,
+    Options? options
+  }){
+    Stream.fromFuture(_request<T>(method.value, url,data: params,queryParameters: queryParameters,options: options,cancelToken: cancelToken)).
+    asBroadcastStream().listen((result){
+      if(result.code == 0){
+        if(onSuccess != null){
+          onSuccess(result.data);
+        }
+      }else{
+        _onError(result.code, result.message, onError);
+      }
+    },onError: (dynamic e){
+      _cancelLogPrint(e, url);
+      final NetError error = ExceptionHandle.handleException(e);
+      _onError(error.code, error.msg, onError);
+    });
+  }
+
   Options _checkOptions(String method, Options? options) {
     options ??= Options();
     options.method = method;
