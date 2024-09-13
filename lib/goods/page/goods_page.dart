@@ -1,5 +1,6 @@
 import 'package:deer_imitate/goods/page/goods_list_page.dart';
 import 'package:deer_imitate/goods/provider/goods_page_provider.dart';
+import 'package:deer_imitate/goods/widgets/goods_add_menu.dart';
 import 'package:deer_imitate/res/gaps.dart';
 import 'package:deer_imitate/res/resources.dart';
 import 'package:deer_imitate/utils/theme_utils.dart';
@@ -33,6 +34,7 @@ class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMix
     '酒水',
     '家庭清洁'
   ];
+  final GlobalKey _addKey = GlobalKey();
   TabController? _tabController ;
   final PageController _pageController = PageController();
   final GlobalKey _bodyKey = GlobalKey();
@@ -69,7 +71,10 @@ class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMix
               ),
             ),
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  _showAddMenu();
+                },
+                key: _addKey,
                 icon: LoadAssetImage(
                   'goods/add',
                   key: const Key('add'),
@@ -173,6 +178,15 @@ class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMix
         },
       ),
     );
+  }
+
+  void _showAddMenu(){
+    final RenderBox button = _addKey.currentContext?.findRenderObject() as RenderBox;
+    showPopupWindow<void>(
+        context: context,
+        anchor: button,
+        offset: Offset(button.size.width - 8.0, -12.0),
+        child: const GoodsAddMenu());
   }
 }
 
