@@ -10,7 +10,7 @@ class PowerPresenter<IMvpView> extends BasePresenter{
 
   void requestPresenter(List<BasePagePresenter> presenters){
     _presenters = presenters;
-    _presenters.forEach(_requestPresenter)
+    _presenters.forEach(_requestPresenter);
   }
   
   void _requestPresenter(BasePagePresenter presenter){
@@ -19,7 +19,7 @@ class PowerPresenter<IMvpView> extends BasePresenter{
 
   @override
   void deactivate() {
-    _presenters.forEach(_deactivate)
+    _presenters.forEach(_deactivate);
   }
 
   void _deactivate(BasePagePresenter presenter){

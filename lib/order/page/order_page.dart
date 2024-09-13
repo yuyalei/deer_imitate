@@ -1,7 +1,9 @@
 import 'package:deer_imitate/home/page/home_page.dart';
+import 'package:deer_imitate/order/order_router.dart';
 import 'package:deer_imitate/order/page/order_list_page.dart';
 import 'package:deer_imitate/order/provider/order_page_provider.dart';
 import 'package:deer_imitate/res/resources.dart';
+import 'package:deer_imitate/routers/fluro_navigator.dart';
 import 'package:deer_imitate/utils/theme_utils.dart';
 import 'package:deer_imitate/widgets/load_image.dart';
 import 'package:deer_imitate/widgets/my_flexible_space_bar.dart';
@@ -120,7 +122,7 @@ class _OrderPageState extends State<OrderPage>
           systemOverlayStyle: ThemeUtils.dark,
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {NavigatorUtils.push(context, OrderRouter.orderSearchPage);},
               icon: LoadAssetImage(
                 'order/icon_search',
                 width: 22.0,

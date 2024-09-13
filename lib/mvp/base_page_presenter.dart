@@ -68,6 +68,7 @@ class BasePagePresenter<V extends IMvpView> extends BasePresenter<V> {
     options: options,
     cancelToken: cancelToken,
     onSuccess: (data){
+      print(data.toString());
       if(isClose){
         view.closeProgress();
       }
