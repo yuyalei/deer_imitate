@@ -4,6 +4,7 @@ import 'package:deer_imitate/store/store_router.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
+import '../goods/goods_router.dart';
 import '../home/page/home_page.dart';
 import 'i_router.dart';
 import 'not_found_page.dart';
@@ -28,6 +29,7 @@ class Routes{
     _listRouter.add(LoginRouter());
     _listRouter.add(StoreRouter());
     _listRouter.add(OrderRouter());
+    _listRouter.add(GoodsRouter());
 
     void initRouter(IRouterProvider routerProvider){
       routerProvider.initRouter(router);

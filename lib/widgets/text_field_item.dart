@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 
 class TextFieldItem extends StatelessWidget{
 
-  TextFieldItem({super.key,this.controller, required this.title, this.hintText = '', this.keyboardType = TextInputType.text,
+  const TextFieldItem({super.key,this.controller, required this.title, this.hintText = '', this.keyboardType = TextInputType.text,
       this.focusNode});
 
   final TextEditingController? controller;

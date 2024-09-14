@@ -3,6 +3,8 @@ import 'package:deer_imitate/widgets/load_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../res/colors.dart';
+import '../../routers/fluro_navigator.dart';
+import '../goods_router.dart';
 
 class GoodsAddMenu extends StatefulWidget {
   const GoodsAddMenu({super.key});
@@ -64,14 +66,14 @@ class _GoodsAddMenuState extends State<GoodsAddMenu>
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0),topRight: Radius.circular(8.0))
                 )
               ),
-              label: Text("扫码天机")
+              label: Text("扫码添加")
           ),
         ),
         Container(width: 120,height: 0.5,color: Colours.line,),
         SizedBox(
           width: 120.0,
           height: 40.0,
-          child: TextButton.icon(onPressed: (){},
+          child: TextButton.icon(onPressed: (){ NavigatorUtils.push(context, '${GoodsRouter.goodsEditPage}?isAdd=true&isScan=true', replace: true);},
             icon: LoadAssetImage('goods/add2', width: 16.0, height: 16.0, color: iconColor,),
               label: Text("添加商品"),
           style: TextButton.styleFrom(
